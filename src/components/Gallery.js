@@ -1,12 +1,62 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback, useMemo   } from 'react'
+import Carousel from "react-material-ui-carousel";
+// import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
+// import Carousel from "@mui/material/Carousel";
 import GalleryItem from "./GalleryItem"
+import ReactDOM from "react-dom";
+
 
 function Gallery() {
+
+  const [activeChild, setActiveChild] = useState(0);
+
+  // Basically items = [1, 2, 3, 4]
+  const items = useMemo(() => [1, 2, 3, 4], []);
+
+  // The Keypress Event Handler
+  const changeChild = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        // If supposed previous child is < 0 set it to last child
+
+        setActiveChild((a) => (a - 1 < 0 ? items.length - 1 : a - 1));
+      } else if (e.key === "ArrowRight") {
+        // If supposed next child is > length -1 set it to first child
+        setActiveChild((a) => (a + 1 > items.length - 1 ? 0 : a + 1));
+      }
+    },
+    [items]
+  );
+
+  // Set and cleanup the event listener
+  useEffect(() => {
+    document.addEventListener("keydown", changeChild);
+
+    return function cleanup() {
+      document.removeEventListener("keydown", changeChild);
+    };
+  });
+
   return (
-    <div>
-      <GalleryItem />
-    </div>
-  )
+
+    <div className="App">
+    <Carousel
+      index={activeChild} // <-- This controls the activeChild
+      autoPlay={false} // <-- You probaly want to disable this for our purposes
+      navButtonsAlwaysVisible
+    >
+      {items.map((i) => {
+        return (
+          <Typography align="center" key={i}>
+            Image {i}
+          </Typography>
+        );
+      })}
+    </Carousel>
+  </div>
+);
 }
+
 
 export default Gallery

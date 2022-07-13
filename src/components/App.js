@@ -1,22 +1,18 @@
-import React from "react";
-import Signup from "./Signup";
-import Login from "./Login";
+// import {useState, useEffect} from "react"
+import Signup from './Signup'
+import Login from './Login'
 import Gallery from "./Gallery"
+import Footer from "./Footer"
 import Dashboard from "./Dashboard"
-import Footer from "./Footer";
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-
-  // useEffect for API pull
-  
   return (
     <div className="App">
-      <Dashboard />
-      <Signup />
-      <Login />
-      <Gallery />
-      <Footer />
-      
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }

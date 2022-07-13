@@ -5,10 +5,10 @@ import Button from "@mui/material/Button";
 import InputAdornment from '@mui/material/InputAdornment';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
-import PasswordIcon from '@mui/icons-material/Password';
-// import IconButton from '@mui/material/IconButton';
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
+// import PasswordIcon from '@mui/icons-material/Password';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
   // let showPassword = false
@@ -23,6 +23,7 @@ import PasswordIcon from '@mui/icons-material/Password';
 function Signup() {
 
   const [formValues, setFormValues] = useState(defaultValues)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleInputChange = (e) => {
     const value = e.target.value
@@ -50,9 +51,13 @@ function Signup() {
     console.log('login instead')
   }
 
-  // const handleClickShowPassword = () => {
-  //     showPassword = !showPassword
-  // };
+  const handleClickShowPassword = () => {
+    setShowPassword((currentState) => !currentState)
+  };
+
+  // this function prevents the field from being left when the icon is clicked
+  //   but the cursor is sent to the front of the field making it more awkward 
+  //   than the field being left all together
 
   // const handleMouseDownPassword = (e) => {
   //   e.preventDefault();
@@ -122,28 +127,22 @@ function Signup() {
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">
-                      <PasswordIcon />
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        // onMouseDown={handleMosueDownPassword}
+                        edge="start"
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
                     </InputAdornment>
                   ),
-                  // endAdornment: (
-                  //   <InputAdornment position="end">
-                  //     <IconButton
-                  //       aria-label="toggle password visibility"
-                  //       onClick={handleClickShowPassword}
-                  //       onMouseDown={handleMouseDownPassword}
-                  //       edge="end"
-                  //     >
-                  //       {showPassword ? <VisibilityOff /> : <Visibility />}
-                  //     </IconButton>
-                  //   </InputAdornment>
-                  // )
                 }}
                 id="password-input"
                 name="password"
                 label="Password"
-                type="password"
-                // type={showPassword ? "text" : "password"}
+                type={showPassword ? "text" : "password"}
                 value={formValues.password || ""}
                 onChange={handleInputChange}
               />

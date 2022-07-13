@@ -11,11 +11,12 @@ function App() {
   
   return (
     <div className="App">
+      <Dashboard />
       <Signup />
       <Login />
       <Gallery />
       <Footer />
-      <Dashboard />
+      
     </div>
   );
 }

@@ -1,14 +1,18 @@
 import React from 'react'
-import AddLog from "./AddLog"
 import LogItem from './LogItem'
-import LogDetails from './LogDetails'
 
-function Logs() {
+function Logs({user}) {
+  
+  console.log(user)
+
+  const renderLogs = user.logs?.map((log) => {
+    return <LogItem key={log.id} log={log} />
+  })
+
+  
   return (
     <div>
-        <AddLog />
-        <LogItem />
-        <LogDetails />
+      {renderLogs} 
     </div>
   )
 }

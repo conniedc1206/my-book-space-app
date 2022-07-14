@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,  Link as RouterLink } from 'react-router-dom'
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -9,17 +9,24 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import NavSignUp from "./NavSignUp";
-import {
-  Link as RouterLink,
-} from 'react-router-dom';
 
 const defaultValues = {
   email: "",
   password: "",
 };
 
+// const defaultUser = {
+//   id: 0,
+//   first_name: "",
+//   last_name: "",
+//   email: "",
+//   password: "",
+//   logs: [],
+//   created_at: "",
+//   updated_at: "",
+// };
+
 function Login() {
- 
   const [formValues, setFormValues] = useState(defaultValues);
   const [showPassword, setShowPassword] = useState(false)
   
@@ -29,32 +36,33 @@ function Login() {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value
+      [name]: value,
     });
   };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const configObj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify({ ...formValues }),
-  }
+    const configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ ...formValues }),
+    };
 
-  fetch("/login", configObj)
-    .then((res) => res.json())
-    .then((data) => navigate(`/dashboard/${data.id}`))
- 
-  setFormValues(defaultValues)
-}
+    fetch("/login", configObj)
+      .then((res) => res.json())
+      .then((data) => navigate(`/users/${data.id}`));
 
-const handleClickShowPassword = () => {
-  setShowPassword((currentState) => !currentState)
-};
+    setFormValues(defaultValues);
+  };
+  // navigate(`/dashboard/${data.id}`)
+
+  const handleClickShowPassword = () => {
+    setShowPassword((currentState) => !currentState);
+  };
 
   return (
     <>
@@ -107,10 +115,31 @@ const handleClickShowPassword = () => {
           />
         </Grid>
 
-      <Button variant="contained" type="submit">
-        Login
-      </Button>
-
+        <Grid container alignItems="center" justify="center" direction="column">
+          <Grid item marginBottom="1%">
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="start"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              id="password-input"
+              name="password"
+              label="password"
+              type={showPassword ? "text" : "password"}
+              value={formValues.password || ""}
+              onChange={handleChange}
+            />
+          </Grid>
       </Grid>
     </form>
       <Grid container alignItems="center" justify="center" direction="column" sx={{mt: 2}}>
@@ -122,6 +151,6 @@ const handleClickShowPassword = () => {
       </Grid>
     </>
   );
-};
+}
 
 export default Login;

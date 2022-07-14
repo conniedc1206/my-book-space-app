@@ -58,7 +58,7 @@ function LogDetails({user}) {
     };
     fetch(`/logs/${id}`, configObj)
       .then((res) => res.json())
-      .then(updatedLog => navigate(`/dashboard/${updatedLog.user_id}`))
+      .then(updatedLog => navigate(`/users/${updatedLog.user_id}`))
       // navigate(`/dashboard/${updatedLog.user_id}`)
     
       setFormValues(defaultValues)

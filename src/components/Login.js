@@ -89,32 +89,6 @@ function Login() {
           />
         </Grid>
       </Grid>
-
-      <Grid container alignItems="center" justify="center" direction="column">
-        <Grid item sx={{ mb: 2 }}>
-          <TextField
-           InputLabelProps={{ shrink: true }}
-           InputProps={{
-            startAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                edge="start">
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            )
-          }}
-            id="password-input"
-            name="password"
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            value={formValues.password || ""}
-            onChange={handleChange}
-          />
-        </Grid>
-
         <Grid container alignItems="center" justify="center" direction="column">
           <Grid item marginBottom="1%">
             <TextField
@@ -140,6 +114,9 @@ function Login() {
               onChange={handleChange}
             />
           </Grid>
+        <Button variant="contained" type="submit">
+            Login
+        </Button>
       </Grid>
     </form>
       <Grid container alignItems="center" justify="center" direction="column" sx={{mt: 2}}>

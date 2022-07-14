@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBar from "./NavBar";
+import NavDashboard from "./NavDashboard";
 import Logs from "./Logs";
 import AddLog from "./AddLog";
 
@@ -16,14 +16,11 @@ function Dashboard() {
       .then((data) => setUser(data));
   }, []);
 
-  console.log(user)
-
   return (
     <div>
-      <h1>Hello</h1>
-      <NavBar />
-      <Logs user={user}/>
-      <AddLog user={user}/>
+      <NavDashboard user={user} />
+      <Logs user={user} />
+      <AddLog user={user} />
     </div>
   );
 }

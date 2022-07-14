@@ -53,16 +53,26 @@ function Login() {
     };
 
     fetch("/login", configObj)
-      .then((res) => res.json())
-      .then((data) => navigate(`/users/${data.id}`));
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Incorrect Email or Password. Try Again!');
+      })
+      .then((data) => navigate(`/users/${data.id}`))
+      .catch((error) => {
+        alert(error)
+      });
 
-    setFormValues(defaultValues);
-  };
+      setFormValues(defaultValues);
+    };
   // navigate(`/dashboard/${data.id}`)
 
   const handleClickShowPassword = () => {
     setShowPassword((currentState) => !currentState);
   };
+
+  
 
   return (
     <>
@@ -86,6 +96,7 @@ function Login() {
             type="text"
             value={formValues.email}
             onChange={handleChange}
+            required
           />
         </Grid>
       </Grid>
@@ -108,10 +119,11 @@ function Login() {
               }}
               id="password-input"
               name="password"
-              label="password"
+              label="Password"
               type={showPassword ? "text" : "password"}
               value={formValues.password || ""}
               onChange={handleChange}
+              required
             />
           </Grid>
         <Button variant="contained" type="submit">

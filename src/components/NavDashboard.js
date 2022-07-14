@@ -55,12 +55,12 @@ function NavLoggedIn( { user } ) {
             >
               <MenuItem onClick={handleClose}>Dashboard</MenuItem>
               <MenuItem onClick={handleClose}>My Book Logs</MenuItem>
-              <MenuItem onClick={handleClose} component={RouterLink} to="/logs">Add A New Log</MenuItem>
+              <MenuItem onClick={handleClose}>Add A New Log</MenuItem>
               <MenuItem onClick={handleClose}>My Wishlist</MenuItem>
             </Menu>
           </Box>
           <Box sx={{ ml: 2, flexGrow: 1 }}>
-            <Typography sx={{ fontSize: 20 }}>Hello, {user.first_name}!</Typography>
+            <Typography sx={{ fontSize: 20 }}>Welcome to your Book Space, {user.first_name}!</Typography>
           </Box>
           <Box>
             <Button color="inherit" component={RouterLink} to="/login">Logout</Button>

@@ -1,12 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Signup from './Signup'
 import Login from './Login'
-import LogDetails from './LogDetails'
 import AddLog from './AddLog'
 // import Gallery from "./Gallery"
 // import Footer from "./Footer"
 import Dashboard from "./Dashboard"
-import AddLog from "./AddLog"
 import LogDetails from "./LogDetails";
 
 function App() {

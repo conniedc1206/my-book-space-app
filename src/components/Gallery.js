@@ -2,8 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo   } from 'react'
 import Carousel from "react-material-ui-carousel";
 // import Typography from "@material-ui/core/Typography";
 import Typography from "@mui/material/Typography";
-// import Carousel from "@mui/material/Carousel";
-import GalleryItem from "./GalleryItem"
+// import GalleryItem from "./GalleryItem"
 import ReactDOM from "react-dom";
 
 

@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import EmailIcon from '@mui/icons-material/Email';
-import PasswordIcon from '@mui/icons-material/Password';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import NavSignUp from "./NavSignUp";
 
 
 
 const defaultValues = {
   email: "",
   password: "",
-  // showPassword: false
 };
 
 function Login() {
@@ -22,6 +22,7 @@ function Login() {
   const [formValues, setFormValues] = useState(defaultValues);
   const [showPassword, setShowPassword] = useState(false)
   
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,10 +45,11 @@ const handleSubmit = (e) => {
     body: JSON.stringify({ ...formValues }),
   }
 
-  fetch("http://localhost:9292/login", configObj)
+  fetch("/login", configObj)
+    .then((res) => res.json())
+    .then((data) => navigate(`/dashboard/${data.id}`))
  
   setFormValues(defaultValues)
-  console.log(formValues)
 }
 
 const handleClickShowPassword = () => {
@@ -55,11 +57,12 @@ const handleClickShowPassword = () => {
 };
 
   return (
-    <div>Log in
-      <form onSubmit={handleSubmit}>
-      <h1>Log in to your Book Space</h1>
-      <Grid container alignItems="center" justify="center" direction="column">
-        <Grid item marginBottom="1%">
+    <>
+      <NavSignUp />
+      <form onSubmit={handleSubmit}> 
+      <Grid container alignItems="center" justify="center" direction="column" marginTop="2%">
+      <h2>Log in to your Book Space</h2>
+        <Grid item sx={{ mb: 2 }}>
           <TextField
            InputLabelProps={{ shrink: true }}
            InputProps={{
@@ -80,21 +83,16 @@ const handleClickShowPassword = () => {
       </Grid>
 
       <Grid container alignItems="center" justify="center" direction="column">
-        <Grid item marginBottom="1%">
+        <Grid item sx={{ mb: 2 }}>
           <TextField
            InputLabelProps={{ shrink: true }}
            InputProps={{
             startAdornment: (
-              <InputAdornment position="start">
-                <PasswordIcon />
-              </InputAdornment>
-            ),
-            endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
-                edge="end">
+                edge="start">
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
@@ -102,8 +100,8 @@ const handleClickShowPassword = () => {
           }}
             id="password-input"
             name="password"
-            label="password"
-            type={formValues.showPassword ? "text" : "password"}
+            label="Password"
+            type={showPassword ? "text" : "password"}
             value={formValues.password || ""}
             onChange={handleChange}
           />
@@ -113,13 +111,17 @@ const handleClickShowPassword = () => {
         Login
       </Button>
 
-      <Button variant="contained" type="submit">
-        Sign up instead
-      </Button>
       </Grid>
     </form>
-    </div>
+      <Grid container alignItems="center" justify="center" direction="column" sx={{mt: 2}}>
+        <Grid item>
+          <Button variant="contained" type="submit">
+            Sign up instead
+          </Button>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
-export default Login
+export default Login;

@@ -1,18 +1,31 @@
-import React from "react"
-import NavBar from "./NavBar"
-import Logs from "./Logs";
+import React, { useEffect, useState } from "react"
+import NavDashboard from "./NavDashboard"
+import Logs from "./Logs"
+import Box from '@mui/material/Box';
+import { useParams } from "react-router-dom"
 
 function Dashboard(){
+
+    const [user, setUser] = useState({})
+    let { id } = useParams()
+
+    useEffect(() => {
+        async function fetchUser(){
+            const response = await fetch(`/users/${id}`)
+            const LoggedInUser = await response.json()
+            setUser(LoggedInUser)
+        }
+        fetchUser()
+    }, [id])
+
+    console.log(user)
+    
     return (
-        <div>
-            <h1>hello</h1>
-            <NavBar />
-            <Logs />
-        </div>
+        <Box>
+            <NavDashboard />
+            <Logs user={user}/>
+        </Box>
     )
-    }
-    
-    export default Dashboard;
-    
-    
-    
+}
+
+export default Dashboard;

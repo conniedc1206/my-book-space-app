@@ -8,8 +8,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import {
+  Link as RouterLink,
+} from 'react-router-dom';
 
-function NavBar() {
+function NavLoggedIn( { user }) {
   
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
@@ -52,15 +55,15 @@ function NavBar() {
             >
               <MenuItem onClick={handleClose}>Dashboard</MenuItem>
               <MenuItem onClick={handleClose}>My Book Logs</MenuItem>
-              <MenuItem onClick={handleClose}>Add A New Log</MenuItem>
+              <MenuItem onClick={handleClose} component={RouterLink} to="/logs">Add A New Log</MenuItem>
               <MenuItem onClick={handleClose}>My Wishlist</MenuItem>
             </Menu>
           </Box>
           <Box sx={{ ml: 2, flexGrow: 1 }}>
-            <Typography sx={{ fontSize: 20 }}>Dashboard</Typography>
+            {/* <Typography sx={{ fontSize: 20 }}>Hello, {user.first_name}!</Typography> */}
           </Box>
           <Box>
-            <Button color="inherit">Logout</Button>
+            <Button color="inherit" component={RouterLink} to="/login">Logout</Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -68,4 +71,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavLoggedIn;

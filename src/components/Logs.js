@@ -1,15 +1,21 @@
 import React from 'react'
-import AddLog from "./AddLog"
 import LogItem from './LogItem'
-import LogDetails from './LogDetails'
+import Box from '@mui/material/Box';
 
-function Logs() {
+function Logs( { user } ) {
+
+  const renderLogs = user.logs?.map(log => {
+    return <LogItem key={log.id} log={log} />
+  })
+  
   return (
-    <div>
-        <AddLog />
-        <LogItem />
-        <LogDetails />
-    </div>
+    <Box container sx={{ m: 2, border: 1, height: "700px", borderRadius: 1, display: "flex", overflowX: "auto" }}>
+
+        {renderLogs}
+        {/* <AddLog /> */}
+        {/* <LogDetails /> */}
+
+    </Box>
   )
 }
 

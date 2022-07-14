@@ -9,8 +9,9 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import NavSignUp from "./NavSignUp";
-
-
+import {
+  Link as RouterLink,
+} from 'react-router-dom';
 
 const defaultValues = {
   email: "",
@@ -31,7 +32,6 @@ function Login() {
       [name]: value
     });
   };
-// console.log(setFormValues)
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -93,7 +93,7 @@ const handleClickShowPassword = () => {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 edge="start">
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             )
@@ -115,7 +115,7 @@ const handleClickShowPassword = () => {
     </form>
       <Grid container alignItems="center" justify="center" direction="column" sx={{mt: 2}}>
         <Grid item>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" component={RouterLink} to="/">
             Sign up instead
           </Button>
         </Grid>

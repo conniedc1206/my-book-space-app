@@ -12,7 +12,7 @@ import {
   Link as RouterLink,
 } from 'react-router-dom';
 
-function NavLoggedIn( { user }) {
+function NavLoggedIn( { user } ) {
   
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
@@ -60,7 +60,7 @@ function NavLoggedIn( { user }) {
             </Menu>
           </Box>
           <Box sx={{ ml: 2, flexGrow: 1 }}>
-            {/* <Typography sx={{ fontSize: 20 }}>Hello, {user.first_name}!</Typography> */}
+            <Typography sx={{ fontSize: 20 }}>Hello, {user.first_name}!</Typography>
           </Box>
           <Box>
             <Button color="inherit" component={RouterLink} to="/login">Logout</Button>

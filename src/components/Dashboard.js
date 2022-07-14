@@ -17,12 +17,10 @@ function Dashboard(){
         }
         fetchUser()
     }, [id])
-
-    console.log(user)
     
     return (
         <Box>
-            <NavDashboard />
+            <NavDashboard user={user}/>
             <Logs user={user}/>
         </Box>
     )

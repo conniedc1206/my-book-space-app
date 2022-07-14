@@ -9,6 +9,9 @@ import NavLogIn from './NavLogIn'
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {
+  Link as RouterLink,
+} from 'react-router-dom';
 
   const defaultValues = {
     first_name: "",
@@ -155,7 +158,7 @@ function Signup() {
           </form>
             <Grid container alignItems="center" justify="center" direction="column">      
               <Grid item sx={{ mt: 2 }}>
-                <Button type="submit" variant="contained" onClick={handleLogInClick}>
+                <Button type="submit" variant="contained" component={RouterLink} to="/login" >
                   Login Instead
                 </Button>
               </Grid>

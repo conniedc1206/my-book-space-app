@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -10,8 +10,8 @@ import Rating from '@mui/material/Rating';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function LogItem( { log } ) {
-
-  const { title, author, image_url, created_at, star_rating, id } = log
+  const [imageUrl, setImageUrl] = useState("")
+  const { title, author, created_at, star_rating, id } = log
 
   const [reloadPage, setReloadPage] = useState(false)
 
@@ -28,7 +28,15 @@ function LogItem( { log } ) {
     fetch(`/logs/${id}`, {method: "DELETE"})
     setReloadPage((currentState) => !currentState)
     window.location.reload(reloadPage)
-}
+  }
+
+  // get image_url: try to save image in log object?
+  useEffect(() => {
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`)
+    .then(resp => resp.json())
+    .then(data => setImageUrl(data.items[0].volumeInfo.imageLinks.thumbnail))
+  }, []);
+
 
   return (
     <Card item
@@ -58,7 +66,7 @@ function LogItem( { log } ) {
     }}
       component="img"
       height="60%"
-      image={image_url}
+      image={imageUrl}
       />
       <CardContent>
         <Typography>

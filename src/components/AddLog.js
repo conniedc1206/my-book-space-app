@@ -44,15 +44,6 @@ function AddLog({user}) {
     });
   }
 
-  // get image_url:
-  // useEffect(() => {
-  //   fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${formValues.title}`)
-  //   .then(resp => resp.json())
-  //   .then(data => setImage(data.items[0].volumeInfo.imageLinks.thumbnail))
-  // }, []);
-  // console.log(image)
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(formValues)

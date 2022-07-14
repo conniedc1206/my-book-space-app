@@ -19,7 +19,6 @@ const defaultValues = {
 
 function AddLog({user}) {
   const [formValues, setFormValues] = useState(defaultValues);
-  const [image, setImage] = useState("")
   const [reloadPage, setReloadPage] = useState(false)
   
   const navigate = useNavigate()

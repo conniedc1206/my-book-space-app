@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Link, Routes, Route, useNavigate, useParams } from "react-router-dom";
-
+import React, { useState } from 'react'
+import { useNavigate,  Link as RouterLink } from 'react-router-dom'
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import EmailIcon from "@mui/icons-material/Email";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import EmailIcon from '@mui/icons-material/Email';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import NavSignUp from "./NavSignUp";
 
 const defaultValues = {
   email: "",
@@ -28,10 +28,9 @@ const defaultValues = {
 
 function Login() {
   const [formValues, setFormValues] = useState(defaultValues);
-  const [showPassword, setShowPassword] = useState(false);
-  // const [currentUser, setCurrentUser] = useState(defaultUser);
-
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false)
+  
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +39,6 @@ function Login() {
       [name]: value,
     });
   };
-  // console.log(setFormValues)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -67,29 +65,54 @@ function Login() {
   };
 
   return (
-    <div>
-      Log in
-      <form onSubmit={handleSubmit}>
-        <h1>Log in to your Book Space</h1>
-        <Grid container alignItems="center" justify="center" direction="column">
-          <Grid item marginBottom="1%">
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <EmailIcon />
-                  </InputAdornment>
-                ),
-              }}
-              id="email"
-              name="email"
-              label="Email"
-              type="text"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-          </Grid>
+    <>
+      <NavSignUp />
+      <form onSubmit={handleSubmit}> 
+      <Grid container alignItems="center" justify="center" direction="column" marginTop="2%">
+      <h2>Log in to your Book Space</h2>
+        <Grid item sx={{ mb: 2 }}>
+          <TextField
+           InputLabelProps={{ shrink: true }}
+           InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <EmailIcon />
+              </InputAdornment>
+            ),
+          }}
+            id="email"
+            name="email"
+            label="Email"
+            type="text"
+            value={formValues.email}
+            onChange={handleChange}
+          />
+        </Grid>
+      </Grid>
+
+      <Grid container alignItems="center" justify="center" direction="column">
+        <Grid item sx={{ mb: 2 }}>
+          <TextField
+           InputLabelProps={{ shrink: true }}
+           InputProps={{
+            startAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                edge="start">
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
+            id="password-input"
+            name="password"
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            value={formValues.password || ""}
+            onChange={handleChange}
+          />
         </Grid>
 
         <Grid container alignItems="center" justify="center" direction="column">
@@ -117,17 +140,16 @@ function Login() {
               onChange={handleChange}
             />
           </Grid>
-
-          <Button variant="contained" type="submit">
-            Login
-          </Button>
-
-          <Button variant="contained" type="submit">
+      </Grid>
+    </form>
+      <Grid container alignItems="center" justify="center" direction="column" sx={{mt: 2}}>
+        <Grid item>
+          <Button variant="contained" type="submit" component={RouterLink} to="/">
             Sign up instead
           </Button>
         </Grid>
-      </form>
-    </div>
+      </Grid>
+    </>
   );
 }
 

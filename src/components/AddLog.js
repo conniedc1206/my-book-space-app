@@ -20,8 +20,11 @@ const defaultValues = {
 function AddLog({user}) {
   const [formValues, setFormValues] = useState(defaultValues);
   const [image, setImage] = useState("")
+  const [reloadPage, setReloadPage] = useState(false)
   
   const navigate = useNavigate()
+
+  console.log(user.id)
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,9 +66,11 @@ function AddLog({user}) {
     };
     fetch(`/users/${user.id}`, configObj)
       .then((res) => res.json())
-      .then((data) => navigate(`/logs/${data.id}`))
-    
+      .then((data) => navigate(`/users/${data.user_id}`))
+
     setFormValues(defaultValues);
+    setReloadPage((currentState) => !currentState)
+    window.location.reload(reloadPage)
   };
 
   console.log(formValues)

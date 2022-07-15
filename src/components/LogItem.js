@@ -56,7 +56,7 @@ function LogItem( { log, setEditLog } ) {
         <MenuBookIcon />
       }
       title={title}
-      subheader={author}
+      subheader={author ? author : "Unknown Author"}
       >
       </CardHeader>
       <CardMedia

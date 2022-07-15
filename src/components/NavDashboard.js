@@ -12,7 +12,7 @@ import {
   Link as RouterLink,
 } from 'react-router-dom';
 
-function NavLoggedIn( { user } ) {
+function NavDashboard( { user } ) {
   
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
@@ -71,4 +71,4 @@ function NavLoggedIn( { user } ) {
   );
 }
 
-export default NavLoggedIn;
+export default NavDashboard;

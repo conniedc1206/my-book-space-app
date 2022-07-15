@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 import NavDashboard from "./NavDashboard";
 import Logs from "./Logs";
 import AddLog from "./AddLog";
+import Footer from './Footer';
+import Box from '@mui/material/Box';
 
-function Dashboard() {
+
+function Dashboard({ setEditLog }) {
   const [user, setUser] = useState({});
   
   let { id } = useParams();
@@ -19,8 +22,12 @@ function Dashboard() {
   return (
     <div>
       <NavDashboard user={user} />
-      <Logs user={user} />
-      <AddLog user={user} />
+      <Box container sx={{ display: "flex" }}>
+        
+        <Logs user={user} setEditLog={setEditLog}/>
+        <AddLog user={user} />
+      </Box>
+      <Footer />
     </div>
   );
 }

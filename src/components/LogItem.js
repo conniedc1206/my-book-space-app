@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function LogItem( { log } ) {
+function LogItem( { log, setEditLog } ) {
   const [imageUrl, setImageUrl] = useState("")
   const { title, author, created_at, star_rating, id } = log
 
@@ -20,6 +20,7 @@ function LogItem( { log } ) {
   const navigate = useNavigate()
 
   function handleClick() {
+    setEditLog(log)
     navigate(`/logs/${id}`)
   }
 

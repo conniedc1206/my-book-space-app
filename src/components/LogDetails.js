@@ -83,7 +83,6 @@ function LogDetails({ editLog }) {
     .then(data => setImageUrl(data.items[0].volumeInfo.imageLinks.thumbnail))
   }, []);
 
-
   return (
   <>
   <NavEdit />
@@ -104,7 +103,7 @@ function LogDetails({ editLog }) {
           <MenuBookIcon />
         }
         title={title}
-        subheader={author}
+        subheader={author ? author : "Unknown Author"}
         >
         </CardHeader>
         <CardMedia

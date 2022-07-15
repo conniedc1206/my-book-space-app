@@ -44,8 +44,16 @@ function Signup() {
       body: JSON.stringify({ ...formValues }),
     };
     fetch("/users", configObj)
-      .then((res) => res.json())
-      .then((data) => navigate(`/users/${data.id}`));
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Please Complete All Fields and Try Again!');
+      })
+      .then((data) => navigate(`/users/${data.id}`))
+      .catch((error) => {
+        alert(error)
+      });
 
     setFormValues(defaultValues);
   }
@@ -91,6 +99,7 @@ function Signup() {
                 type="text"
                 value={formValues.first_name || ""}
                 onChange={handleInputChange}
+                required
               />
             </Grid>
             <Grid item marginBottom="1%">
@@ -109,6 +118,7 @@ function Signup() {
                 type="text"
                 value={formValues.last_name || ""}
                 onChange={handleInputChange}
+                required
               />
             </Grid>
             <Grid item marginBottom="1%">
@@ -127,6 +137,7 @@ function Signup() {
                 type="text"
                 value={formValues.email || ""}
                 onChange={handleInputChange}
+                required
               />
             </Grid>
             <Grid item marginBottom="1%">
@@ -152,6 +163,7 @@ function Signup() {
                 type={showPassword ? "text" : "password"}
                 value={formValues.password || ""}
                 onChange={handleInputChange}
+                required
               />
             </Grid>
             <Grid item>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
+import Footer from './Footer'
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -55,10 +56,6 @@ function Signup() {
       });
 
     setFormValues(defaultValues);
-  }
-
-  function handleLogInClick() {
-    console.log("login instead");
   }
 
   const handleClickShowPassword = () => {
@@ -188,6 +185,7 @@ function Signup() {
             </Button>
           </Grid>
         </Grid>
+        <Footer />
       </div>
     </>
   );

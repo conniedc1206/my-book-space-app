@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
@@ -22,8 +22,6 @@ function AddLog({user}) {
   const [reloadPage, setReloadPage] = useState(false)
   
   const navigate = useNavigate()
-
-  console.log(user.id)
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +31,6 @@ function AddLog({user}) {
       user_id: user.id
     });
   };
-  // console.log(user.id)
   
   const handleStarHandle = (e) => {
     const { name, value } = e.target;
@@ -63,12 +60,10 @@ function AddLog({user}) {
     window.location.reload(reloadPage)
   };
 
-  console.log(formValues)
-
   return (
     <div>
     <form onSubmit={handleSubmit}>
-    <Box container sx={{ padding: "15px", m:2, border:1, height: "400px", width:"400px", borderRadius: 2}}>
+    <Box container sx={{ padding: "15px", m:2, border:1, height: "400px", width:"400px", borderRadius: 2 }}>
         <Grid container alignItems="center" justify="center" direction="column" margin="2%">
         <Typography sx={{ fontFamily: "Monospace" }} variant="h4" component="arial">Add New Log</Typography>
           <Grid item marginBottom="1%">

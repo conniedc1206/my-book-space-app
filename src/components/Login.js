@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate,  Link as RouterLink } from 'react-router-dom'
+import Footer from './Footer'
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -14,17 +15,6 @@ const defaultValues = {
   email: "",
   password: "",
 };
-
-// const defaultUser = {
-//   id: 0,
-//   first_name: "",
-//   last_name: "",
-//   email: "",
-//   password: "",
-//   logs: [],
-//   created_at: "",
-//   updated_at: "",
-// };
 
 function Login() {
   const [formValues, setFormValues] = useState(defaultValues);
@@ -138,6 +128,7 @@ function Login() {
           </Button>
         </Grid>
       </Grid>
+      <Footer />
     </>
   );
 }

@@ -24,7 +24,7 @@ Our backend is a [Sinatra API backend](https://github.com/conniedc1206/phase-3-p
 * Debugging: Postman, binding.pry, Network Tab in the Dev Tools
 * RESTful API endpoints
 * Github
-* [Google Books API](https://developers.google.com/books/docs/v1/using#PerformingSearch)
+* 3rd Party API: [Google Books](https://developers.google.com/books/docs/v1/using#PerformingSearch)
 
 ## Goals
 Our goal was to build a React/Sinatra application while simulating a professional work environment by:

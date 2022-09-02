@@ -3,7 +3,7 @@
 
 My Book Space is a React/Sinatra app that helps users log and track the books that they’ve been reading.
 
-Our backend is a [Sinatra API backend](https://github.com/conniedc1206/phase-3-project-sinatra-backend) that uses Active Record to access and persist data in a database.
+Our backend is a [Sinatra API backend](https://github.com/conniedc1206/my-book-space-app-sinatra-backend) that uses Active Record to access and persist data in a database.
 
 ## Users will be able to:
 * signup for a new account or login to an existing account

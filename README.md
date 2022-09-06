@@ -5,6 +5,8 @@ My Book Space is a React/Sinatra app that helps users log and track the books th
 
 Our backend is a [Sinatra API backend](https://github.com/conniedc1206/my-book-space-app-sinatra-backend) that uses Active Record to access and persist data in a database.
 
+Demo: Coming soon!
+
 ## Users will be able to:
 * signup for a new account or login to an existing account
 * see their dashboard once they are logged containing all their previous logs
@@ -51,7 +53,21 @@ Our goal was to build a React/Sinatra application while simulating a professiona
 * Used Google Books API to make GET requests for a book's thumbnail URL (performed search by title)
 
 ## Challenges/Future Improvements
-
+* Validation/encryption for user signup/login:
+    * challenge: checking new user’s inputs/keeping user’s data secure
+    * future improvements: adding validations and encryptions to the signup/login components 
+         * using Rails for user validation: presence, uniqueness, format, length
+         * using Rails for password validation:  has_secure_password, minimum password standards
+         * using bcrypt-ruby gem: allowing us to easily store a secure hash of your users' passwords
+* Error handling for signup/login page:
+    * challenge: empty fields for text inputs still allowed signup and login to proceed, incorrect password inputs
+         * added “required” in all text fields (from MUI), added .error to fetch requests
+* book image url from Google Books API:
+    * future improvement: make requests more efficient
+* A progress bar based on a goal set by user
+* Using different route paths in Navigation:
+    * challenge: deciding where to place each route in components   
+    * future improvement: utilizing each specific path and rendering with it’s given name
 
 ## Avaliable Scripts
 * Fork and clone our [frontend repository](https://github.com/conniedc1206/phase-3-project-react-frontend) onto your local environment:

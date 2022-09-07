@@ -30,7 +30,7 @@ function Footer() {
       >
         <BottomNavigationAction 
         rel="noopener noreferrer"
-        href="https://github.com/conniedc1206/phase-3-project-react-frontend" 
+        href="https://github.com/conniedc1206/my-book-space-app" 
         target="_blank"
         label="GitHub Repo" 
         icon={<GitHubIcon />} />

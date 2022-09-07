@@ -26,7 +26,7 @@
     "eject": "react-scripts eject"
   },
   
-  "proxy": "http://localhost:9292",
+  "proxy": "https://my-book-space-backend.herokuapp.com",
 
   "eslintConfig": {
     "extends": [

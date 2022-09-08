@@ -19,6 +19,7 @@ const defaultValues = {
 function Login() {
   const [formValues, setFormValues] = useState(defaultValues);
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState(false)
   
   const navigate = useNavigate()
 
@@ -32,37 +33,26 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const configObj = {
-      method: "POST",
-      headers: {
+    method: "POST",
+    headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ ...formValues }),
+        "Accept": "application/json",
+    },
+    body: JSON.stringify({ ...formValues }),
     };
-
     fetch("/login", configObj)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Incorrect Email or Password. Try Again!');
-      })
-      .then((data) => navigate(`/users/${data.id}`))
-      .catch((error) => {
-        alert(error)
-      });
-
-      setFormValues(defaultValues);
-    };
-  // navigate(`/dashboard/${data.id}`)
+    .then(res => res.json())
+    .then(data => navigate(`/users/${data.id}`))
+    .catch((error) => {
+        setError(true)
+    })
+    setFormValues(defaultValues)
+  };
 
   const handleClickShowPassword = () => {
     setShowPassword((currentState) => !currentState);
   };
-
-  
 
   return (
     <>

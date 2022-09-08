@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Footer from './Footer'
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import InputAdornment from "@mui/material/InputAdornment";
+import NavLogIn from "./NavLogIn";
+import { Grid, TextField, Button, IconButton, InputAdornment, Alert } from '@mui/material'
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
-import NavLogIn from "./NavLogIn";
-import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
@@ -22,8 +18,13 @@ const defaultValues = {
 function Signup() {
   const [formValues, setFormValues] = useState(defaultValues);
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
+  
+  const handleClickShowPassword = () => {
+    setShowPassword((currentState) => !currentState);
+  };
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -33,42 +34,27 @@ function Signup() {
     });
   };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const configObj = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ ...formValues }),
-    };
-    fetch("/users", configObj)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
+  function handleSubmit(e){
+    e.preventDefault()
+    fetch('https://my-book-space-backend.herokuapp.com/users', {
+        method:'POST',
+        headers:{'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({ ...formValues }),
+    })
+    .then(res => {
+        if(res.ok){
+            res.json().then(user => {
+                // set current user here
+                // setCurrentUser(user)
+                // need to route user to their newsfeed page/home page
+                navigate(`/users/${user.id}`)
+            })
+        } else {
+          res.json().then(json => setErrors(Object.entries(json.errors)))
         }
-        throw new Error('Please Complete All Fields and Try Again!');
-      })
-      .then((data) => navigate(`/users/${data.id}`))
-      .catch((error) => {
-        alert(error)
-      });
-
-    setFormValues(defaultValues);
+    })
+    setFormValues(defaultValues)
   }
-
-  const handleClickShowPassword = () => {
-    setShowPassword((currentState) => !currentState);
-  };
-
-  // this function prevents the field from being left when the icon is clicked
-  //   but the cursor is sent to the front of the field making it more awkward
-  //   than the field being left all together
-
-  // const handleMouseDownPassword = (e) => {
-  //   e.preventDefault();
-  // };
 
   return (
     <>
@@ -149,7 +135,6 @@ function Signup() {
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
-                        // onMouseDown={handleMosueDownPassword}
                         edge="start"
                       >
                         {showPassword ? <Visibility /> : <VisibilityOff />}
@@ -166,6 +151,7 @@ function Signup() {
                 required
               />
             </Grid>
+            {errors.length === 0 ? null: <Alert severity="error">{errors[0][1]}</Alert>}
             <Grid item>
               <Button type="submit" variant="contained">
                 Sign Up

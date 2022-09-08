@@ -25,7 +25,6 @@ function Footer() {
   return (
     <Box sx={{ width: "100%", bottom: 0, position: "fixed" }}>
       <BottomNavigation
-        showLabels
         sx={{ backgroundColor: "transparent"  }}
       >
         <BottomNavigationAction 

@@ -65,7 +65,7 @@ function AddLog({user}) {
     <form onSubmit={handleSubmit}>
     <Box container sx={{ padding: "15px", m:2, border:1, height: "400px", width:"400px", borderRadius: 2 }}>
         <Grid container alignItems="center" justify="center" direction="column" margin="2%">
-        <Typography sx={{ fontFamily: "Monospace", mb: 1 }} variant="h4" component="arial">Add New Log</Typography>
+        <Typography sx={{ fontFamily: "Monospace", mb: 1 }} variant="h4" >Add New Log</Typography>
           <Grid item marginBottom="1%">
             <TextField
             sx={{ mb: 1 }}

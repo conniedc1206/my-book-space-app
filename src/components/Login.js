@@ -19,6 +19,7 @@ const defaultValues = {
 function Login() {
   const [formValues, setFormValues] = useState(defaultValues);
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState(false)
   
   const navigate = useNavigate()
 
@@ -32,14 +33,13 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const configObj = {
-      method: "POST",
-      headers: {
+    method: "POST",
+    headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ ...formValues }),
+        "Accept": "application/json",
+    },
+    body: JSON.stringify({ ...formValues }),
     };
 
     fetch("https://my-book-space-backend.herokuapp.com/login", configObj)
@@ -56,13 +56,10 @@ function Login() {
 
       setFormValues(defaultValues);
     };
-  // navigate(`/dashboard/${data.id}`)
 
   const handleClickShowPassword = () => {
     setShowPassword((currentState) => !currentState);
   };
-
-  
 
   return (
     <>

@@ -41,14 +41,21 @@ function Login() {
     },
     body: JSON.stringify({ ...formValues }),
     };
-    fetch("/login", configObj)
-    .then(res => res.json())
-    .then(data => navigate(`/users/${data.id}`))
-    .catch((error) => {
-        setError(true)
-    })
-    setFormValues(defaultValues)
-  };
+
+    fetch("https://my-book-space-backend.herokuapp.com/login", configObj)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Incorrect Email or Password. Try Again!');
+      })
+      .then((data) => navigate(`/users/${data.id}`))
+      .catch((error) => {
+        alert(error)
+      });
+
+      setFormValues(defaultValues);
+    };
 
   const handleClickShowPassword = () => {
     setShowPassword((currentState) => !currentState);

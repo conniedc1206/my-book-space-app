@@ -26,7 +26,7 @@ function LogItem( { log, setEditLog } ) {
 
   function handleDeleteClick(e){
     e.stopPropagation()
-    fetch(`/logs/${id}`, {method: "DELETE"})
+    fetch(`https://my-book-space-backend.herokuapp.com/logs/${id}`, {method: "DELETE"})
     setReloadPage((currentState) => !currentState)
     window.location.reload(reloadPage)
   }

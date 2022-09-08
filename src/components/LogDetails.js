@@ -36,7 +36,7 @@ function LogDetails({ editLog }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`/logs/${id}`)
+    fetch(`https://my-book-space-backend.herokuapp.com/logs/${id}`)
       .then((res) => res.json())
       .then((log) => setFormValues(log));
   }, []);
@@ -69,7 +69,7 @@ function LogDetails({ editLog }) {
       },
       body: JSON.stringify({ ...formValues }),
     };
-    fetch(`/logs/${id}`, configObj)
+    fetch(`https://my-book-space-backend.herokuapp.com/logs/${id}`, configObj)
       .then((res) => res.json())
       .then(updatedLog => navigate(`/users/${updatedLog.user_id}`))
       // navigate(`/dashboard/${updatedLog.user_id}`)

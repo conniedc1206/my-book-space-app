@@ -51,7 +51,7 @@ function AddLog({user}) {
       },
       body: JSON.stringify({...formValues}),
     };
-    fetch(`/users/${user.id}`, configObj)
+    fetch(`https://my-book-space-backend.herokuapp.com/users/${user.id}`, configObj)
       .then((res) => res.json())
       .then((data) => navigate(`/users/${data.user_id}`))
 

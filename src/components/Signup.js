@@ -151,7 +151,7 @@ function Signup() {
                 required
               />
             </Grid>
-            { errors.length === 0 ? null: <Alert severity="error">{errors[0][1]}</Alert> }
+            {errors.length === 0 ? null: <Alert severity="error">{errors[0][1]}</Alert>}
             <Grid item>
               <Button type="submit" variant="contained">
                 Sign Up

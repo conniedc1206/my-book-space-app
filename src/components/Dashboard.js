@@ -14,7 +14,7 @@ function Dashboard({ setEditLog }) {
 
   // GET whole user object and save it in "user" state
   useEffect(() => {
-    fetch(`/users/${id}`)
+    fetch(`https://my-book-space-backend.herokuapp.com/users/${id}`)
       .then((r) => r.json())
       .then((data) => setUser(data));
   }, []);

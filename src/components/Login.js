@@ -42,7 +42,7 @@ function Login() {
       body: JSON.stringify({ ...formValues }),
     };
 
-    fetch("/login", configObj)
+    fetch("https://my-book-space-backend.herokuapp.com/login", configObj)
       .then((response) => {
         if (response.ok) {
           return response.json();

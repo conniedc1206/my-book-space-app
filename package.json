@@ -2,6 +2,7 @@
   "name": "my-app-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://my-book-space-backend.herokuapp.com",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -25,8 +26,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  
-  "proxy": "https://my-book-space-backend.herokuapp.com",
 
   "eslintConfig": {
     "extends": [

@@ -14,7 +14,6 @@ const defaultValues = {
   author: "",
   comment: "",
   star_rating: 0,
-  // image_url: "" 
 };
 
 function AddLog({user}) {
@@ -36,9 +35,12 @@ function AddLog({user}) {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value
+      [name]: value,
+      user_id: user.id
     });
   }
+
+  console.log(formValues)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +55,7 @@ function AddLog({user}) {
     };
     fetch(`https://my-book-space-backend.herokuapp.com/users/${user.id}`, configObj)
       .then((res) => res.json())
-      .then((data) => navigate(`/users/${data.user_id}`))
+      .then((data) => console.log(data))
 
     setFormValues(defaultValues);
     setReloadPage((currentState) => !currentState)
@@ -123,6 +125,7 @@ function AddLog({user}) {
             <Rating
               name="star_rating"
               value={formValues.star_rating}
+              type="number"
               onChange={handleStarHandle}
             />
           </Box>

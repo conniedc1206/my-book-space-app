@@ -29,8 +29,6 @@ function LogDetails({ editLog }) {
   const [imageUrl, setImageUrl] = useState("")
 
   const { title, author, comment, star_rating } = editLog
-
-  console.log(editLog)
   
   let {id} = useParams();
   const navigate = useNavigate()
